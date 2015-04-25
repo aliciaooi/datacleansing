@@ -1,8 +1,8 @@
 CODEBOOK 
 
-AverageSubjectActivity Dataset
+AverageActivitySubject Dataset
 
-This codebook describes the name of each variable, the values the variable takes in the AverageSubjectActivity dataset. 
+This codebook describes the name of each variable, the values the variable takes in the AverageActivitySubject dataset. 
 It shows Statistical information of the variables, unique and missing values in the variable,
 Distribution of observations among all the values that may be taken by each variable
 Also has mean, sd, and range for the interval and ratio of data in each variables in the dataset.
@@ -427,7 +427,7 @@ Frequency Signal Body Gyroscope Jerk Magnitude Standard Deviation
 lowest : -0.99759 -0.99497 -0.99474 -0.99467 -0.99421, highest: -0.14573 -0.14325 -0.08417 -0.03986  0.28783 
 ------------------------------------------------------------------------------------------------------------------------------------------------
 
-SUMMARY ABOUT VARIABLES IN THE AVERAGESUBEJCTACTIVITY DATASET
+SUMMARY ABOUT VARIABLES IN THE AVERAGEACTIVITYSUBEJCT DATASET
 
 Classes ‘grouped_df’, ‘tbl_df’, ‘tbl’ and 'data.frame':	180 obs. of  68 variables:
  $ Subject                                                              : int  1 1 1 1 1 1 2 2 2 2 ...
