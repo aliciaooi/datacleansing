@@ -1,8 +1,8 @@
 CODEBOOK 
 
-AverageActivitySubject Dataset
+AverageSubjectActivity Dataset
 
-This codebook describes the name of each variable, the values the variable takes in the AverageActivitySubject dataset. 
+This codebook describes the name of each variable, the values the variable takes in the AverageSubjectActivity dataset. 
 It shows Statistical information of the variables, unique and missing values in the variable,
 Distribution of observations among all the values that may be taken by each variable
 Also has mean, sd, and range for the interval and ratio of data in each variables in the dataset.
