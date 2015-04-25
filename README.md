@@ -81,7 +81,8 @@
 	      				#dim(All) 10299 563
 						 #All[1:10, 1:10]
 
-  		7. Renaming the dataset with meaningful names as per NUMBER 4 requirement for meaningful variable names 
+
+  		7. Renaming the dataset with meaningful names as per *** NUMBER 4 *** requirement for meaningful variable names 
 
 	    		names(All) <- c( "subjectid","activityid", feature$measure)
 
@@ -110,89 +111,90 @@
 		Or alternatively UNIQUE clause, cleandataset1 <- All[ ,unique(colnames(All))] to clean the data
 			                      
 							
-		After removing duplicates, dataset has gone from 10299 563 with duplicates to 10299 479 without duplicates . The 				output is to 'cleandataset'
+		After removing duplicates, dataset has gone from 10299 563 with duplicates to 10299 479 without duplicates                  The output is to 'cleandataset'
 					#dim(cleandataset) ##10299 479		
 
 
-####NUMBER 2: GETTING THE SUBSET OF DATASET OF THE COLUMNS CONTAINING NAMES OF MEAN OR STD
+####NUMBER 2: GETTING THE SUBSET OF DATASET OF THE COLUMNS CONTAINING NAMES "MEAN()" OR "STD()"
 
-    			Column index/logical vector of the subset of column names we want to keep including mean, std, activity and 					subject id
+		Column index/logical vector of the subset of column names we want to keep including mean, std,   activity and 			subject id
             
 		Here we have a few choices : 
 		
-		Choice 1: Pick all features with mean or std MeanFrequency and GravityMean :  81 measures
+	Choice 1: Pick all features with mean or std MeanFrequency and GravityMean :  81 measures
 				
 		 #subsetcol <- grepl( "activityid"|"subjectid"|"mean"|"std")" , names(cleandataset) ) ## 81 measures
 			  
-		Choice 2: Ignore cases and just take mean and std (both upper and lower case) : 88 measures (86 meatures , activity         and subject columns)
+	Choice 2: Ignore cases and just take mean and std (both upper and lower case) : 88 measures (86 meatures , activity         and subject columns)
 		                          
-		 		#subsetcol <- grepl( "[Mm]ean|[Ss]td|activityid|subjectid" , names( cleandataset ) )
+		#subsetcol <- grepl( "[Mm]ean|[Ss]td|activityid|subjectid" , names( cleandataset ) )
 				
-		  **Choice 3 : Only choose the explicit mean() and std() (leaving out the MeanFrequency and GravityMean) 
-				  ##68 feature/measures only. Note we only get the mean() and std() of measuresments rather than MeanFrequency and   			   GravityMean 
+	**Choice 3 : Only choose the explicit mean() and std() (leaving out the MeanFrequency and GravityMean) 
+				  ##68 feature/measures only. 
+	Note we only get the mean() and std() of measuresments rather than MeanFrequency and GravityMean 
 		         
-				The assignment was not clear as which mean but looking at data seems Choice 3 is best suited 
+	 The assignment was not clear as which mean but looking at data seems Choice 3 is best suited 
   
   
-  **I CHOSE CHOICE 3  **  :   This seems more logical, consistent and more  relevant to our exercise:  68 mean/std columns
+  *** I CHOSE CHOICE 3  *** 
+  This seems more logical, consistent and more  relevant to our exercise:  68 mean/std columns
 
-subsetcol <- grepl( "[Mm]ean\\()|[Ss]td\\()|activityid|subjectid" , names( cleandataset ) )
+	subsetcol <- grepl( "[Mm]ean\\()|[Ss]td\\()|activityid|subjectid" , names( cleandataset ) )
 
-  #To get the subset of mean and std use the index from subsetcol output subset to 'cleanmean' dataset
+  	#To get the subset of mean and std use the index from subsetcol output subset to 'cleanmean' dataset
                 
       cleanmean <- cleandataset[,subsetcol]
                                 
-     #dim(cleanmean) ## 10299 68 columns ie activity, subject and 68 variables 
-      #cleanmean[1:10, 1:10] ## 10 most left columns
-      #cleanmean[1:10, 60:69] ##check 10 most right columns
-                
+	#dim(cleanmean) ## 10299 68 columns ie activity, subject and 68 variables 
+	    
+                 
 At this point, the dimension is 10299 rows and 68 feature variables in an output called cleanmean dataset
 
-###NUMBER 3: CHANGING THE ACTIVITYID VALUES IN THE CLEANMEAN DATASET TO ACTIVITY NAMES VALUES AND RENAMING COLUMN FROM 'ACTIVITYID' TO 'ACTIVITY'
-
-####	 Replace the activityid in the dataset with actual activity labels from the activity dataset
+###NUMBER 3: CHANGING THE ACTIVITYID VALUES TO ACTIVITY NAMES VALUES AND RENAMING COLUMN
+    
+    This step involves replacing activityid values in main dataset with the activity names from activity dataset
+    
+     Replace the activityid in the dataset with actual activity labels from the activity dataset
                 
-   			names(activity)
-          
-	 Step 1. Getting list of Activityid from main dataset - row index is  list of activityid from cleanmean
-                rowindex <- cleanmean$activityid 
+   	names(activity)
+         
+	Step 1. Getting list of Activityid from main dataset - row index is  list of activityid from cleanmean
+               rowindex <- cleanmean$activityid 
                 
-	Step 2.Matching the activityid in dataset with the activity master table to get the list of activities by names instead 	of activityid. This is a data mapping exercise so we get an activitylist of data which is mapped:
+	Step 2.Matching the activityid in dataset with the activity datset to get the list of activities by names 
+	This is a data mapping exercise so we get an activitylist of data which is mapped:
                 
                 activitylist <- activity[rowindex,]
                 			
-		This intermediate step gives us a data mapping of the activityid to activityname called activitylist which contains the activitynames we can use to populate the main dataset. Output of activitylist
+	This intermediate step gives us a data mapping of the activityid to activityname called activitylist which contains 		the activitynames we can use to populate the main dataset. Output of activitylist
 							
-			  #head(activitylist, 10) 
-	    									|	activityid| activityname|
-         	             				5.0     	 5	   STANDING
-										5.1          5     STANDING
-										5.2          5     STANDING
-										5.3          5     STANDING
-										5.4          5     STANDING
-										5.5          5     STANDING
-										5.6          5     STANDING
-										5.7          5     STANDING
-										5.8          5     STANDING
-										5.9          5     STANDING
+		  #head(activitylist, 5) 
+	      		activityid activityname
+         	     5.0    	 5     STANDING
+			5.1      5     STANDING
+			5.2      5     STANDING
+			5.3      5     STANDING
+			5.4      5     STANDING
+									
                            
-        Step 3. Finally replacing the activityID with activityname values in the main dataset cleanamean by referring to                   the matched list in previous step
-                # We use out translation dataset called activitylist to replace activityid with activityname
+        Step 3. Finally replacing the activityID with activityname values in the main dataset cleanamean by referring to             the matched list in previous step
+        We use out translation dataset called activitylist to replace activityid with activityname
 				
                   cleanmean$activityid <- activitylist$activityname
           
       	At this point the activity in dataset is now activity names rather than id 
 				
-		As such all is left is changing renaming column name 'activityid' to 'activity'  in the cleanmean dataset to reflect        the  newly replaced activity values
+	As such all is left is changing renaming column name 'activityid' to 'activity'  in the cleanmean dataset 
+	to reflect the  newly replaced activity values
                 
                   cleanmean <- rename(cleanmean, Activity = activityid)
 
 
-				names(cleanmean) 
+	  names(cleanmean) 
 
-			[1] "Activity"  "subjectid"   "tBodyAcc-mean()-X"   "tBodyAcc-mean()-Y" "tBodyAcc-mean()-Z"        
+	   [1] "Activity"  "subjectid"   "tBodyAcc-mean()-X"   "tBodyAcc-mean()-Y" "tBodyAcc-mean()-Z"        
 		
-			To look at data : cleanmean[1:5,1:5] ; ouput as follows
+	   To look at data : cleanmean[1:5,1:5] ; ouput as follows
 				  subjectid Activity tBodyAcc-mean()-X tBodyAcc-mean()-Y tBodyAcc-mean()-Z
 				1         2 STANDING         0.2571778       -0.02328523       -0.01465376
 				2         2 STANDING         0.2860267       -0.01316336       -0.11908252
@@ -200,33 +202,35 @@ At this point, the dimension is 10299 rows and 68 feature variables in an output
 				4         2 STANDING         0.2702982       -0.03261387       -0.11752018
 				5         2 STANDING         0.2748330       -0.02784779       -0.12952716
 			
-			At this point, the Activity values are now by labels and the columns names are logical and only for mean() and std() in       the cleanmean dataset
-			During the final cleanup, there will also be some formatting and optional additional labelling for end user readability
+	At this point, the Activity values are now by labels 
+	Columns names are logical and only for mean() and std() in the cleanmean dataset
+       During the final cleanup, there will be more formatting and additional labelling for enduser readability
 
- ####NUMBER 5 :FINDING AVERAGE PER SUBJECT AND ACTIVITY USING THE WIDE DATASET METHOD
+#### NUMBER 5 :FINDING AVERAGE PER SUBJECT AND ACTIVITY USING THE WIDE DATASET FORMAT
 
-        To find the average per subject and activity combination, this dataset can be left in a wide column style using             group_by and summarise_each
+	To find average. this dataset will be left in Wide dataset format
           
                 AverageActivitySubject <- group_by(cleanmean,subjectid,Activity ) %>% summarise_each(funs(mean))
                 names(AverageActivitySubject) 
                 dim(AverageActivitySubject) 
 
   
-	It is possible to use the melt into long method which yields exactly the same result then averaging it but opted to use      wide method
-				    dim(AverageActivitySubject)
+	It is possible to use the melt into long method which yields exactly the same result then averaging it but opted to 		use wide method
+	dim(AverageActivitySubject)
      			     [1] 180  68
 	The result is 30 subjects x 6 activities (180) by 68 mean and std columns we chose to subset earlier				 
 
 
-####Final Cleanup : This is an extension of NUMBER 4 requirements and optional
+#### NUMBER 4: Final Cleanup : This is an extension of NUMBER 4 requirements and optional
 
-			Use the Feature_info.txt to manually add meaning to labels and tidy up formatting and demystifying acronyms- extending       the NUMBER 4 requirements - making labels enduser friendly. 
+	Use the Feature_info.txt to manually add meaning to labels and tidy up formatting 
+	extending the NUMBER 4 requirements - making labels enduser friendly. 
 
-			Find and replace variables to make more sense of column names , replace acronyms with end user friendly terms
+	Find and replace variables to make more sense of column names , replace acronyms with end user friendly terms
 
-			Also renamed subjectid to Subject to make it consistent with the other column names 
+	Also renamed subjectid to Subject to make it consistent with the other column names 
 
-			Use the gsub and pattern matching to find and replace , example the following: 
+	Use the gsub and pattern matching to find and replace , example the following: 
             
            - firstly replace mean() with 'mean' and std() with 'Standard deviation'
             
@@ -236,8 +240,8 @@ At this point, the dimension is 10299 rows and 68 feature variables in an output
             
             Also removing some special characters for readability
 
-	          names(AverageActivitySubject) <- gsub("mean"," Mean",names(AverageActivitySubject))
-	          names(AverageActivitySubject)  <- gsub("std"," Standard Deviation",names(AverageActivitySubject))
+	        names(AverageActivitySubject) <- gsub("mean"," Mean",names(AverageActivitySubject))
+	        names(AverageActivitySubject)  <- gsub("std"," Standard Deviation",names(AverageActivitySubject))
 	        names(AverageActivitySubject)  <- gsub("fBody","Frequency Signal ",names(AverageActivitySubject))
 	        names(AverageActivitySubject)  <- gsub("Acc","Accelerometer",names(AverageActivitySubject))
 	        names(AverageActivitySubject)  <- gsub("tBody","Time Body Signal ",names(AverageActivitySubject))
@@ -249,12 +253,12 @@ At this point, the dimension is 10299 rows and 68 feature variables in an output
 	        names(AverageActivitySubject)  <- gsub("X"," for X axial",names(AverageActivitySubject))
 	        names(AverageActivitySubject)  <- gsub("Y"," for Y axial",names(AverageActivitySubject))
 	        names(AverageActivitySubject)  <- gsub("Z"," for Z axial",names(AverageActivitySubject))
-            names(AverageActivitySubject)  <- gsub("[-]", "",names(AverageActivitySubject))
-            names(AverageActivitySubject)  <- gsub("[()]", "",names(AverageActivitySubject))
-            names(AverageActivitySubject)  <- gsub("BodyGyroscope", "Body Gyroscope",names(AverageActivitySubject))
-            names(AverageActivitySubject)  <- gsub("BodyAccelerometer", "Body Accelerometer",names(AverageActivitySubject                                                     ))
+            	names(AverageActivitySubject)  <- gsub("[-]", "",names(AverageActivitySubject))
+            	names(AverageActivitySubject)  <- gsub("[()]", "",names(AverageActivitySubject))
+            	names(AverageActivitySubject)  <- gsub("BodyGyroscope", "Body Gyroscope",names(AverageActivitySubject))
+            	names(AverageActivitySubject)  <- gsub("BodyAccelerometer", "Body Accelerometer",names(AverageActivitySubject                                                     ))
                 
-              AverageActivitySubject<- rename(AverageActivitySubject, Subject = subjectid)
+        	AverageActivitySubject<- rename(AverageActivitySubject, Subject = subjectid)
 
                 dim(AverageActivitySubject) ##180 x 68
                 
@@ -263,11 +267,11 @@ At this point, the dimension is 10299 rows and 68 feature variables in an output
                 #AverageActivitySubject[1:10,1:5]
                 #AverageActivitySubject[1:10,66:68]
 
-Finally write out to table
+#### Finally write out to table
       
         write.table(AverageActivitySubject, "./AverageSubjectActivity.txt", row.name=FALSE, col.names = TRUE)
 
-To read it back into R please use the following statement
+#### To read it back into R please use the following statement
 
 		fileAverage <-'./AverageActivitySubject.txt'
 		AverageActivitySubject <- read.table(fileAverage , dec=".", quote="\"", stringsAsFactors=F, header= TRUE)
