@@ -115,42 +115,39 @@
 					#dim(cleandataset) ##10299 479		
 
 
-####NUMBER 2: GETTING THE SUBSET OF DATASET OF THE COLUMNS CONTAINING NAMES "MEAN()" OR "STD()"
+#### NUMBER 2: GETTING THE SUBSET OF DATASET OF THE COLUMNS CONTAINING NAMES "MEAN()" OR "STD()"
 
-		Column index/logical vector of the subset of column names we want to keep including mean, std,   activity and 			subject id
-            
-		Here we have a few choices : 
+	Here we have a few choices : 
 		
 	Choice 1: Pick all features with mean or std MeanFrequency and GravityMean :  81 measures
 				
-		 #subsetcol <- grepl( "activityid"|"subjectid"|"mean"|"std")" , names(cleandataset) ) ## 81 measures
+	        #subsetcol <- grepl( "activityid"|"subjectid"|"mean"|"std")" , names(cleandataset) ) ## 81 measures
 			  
 	Choice 2: Ignore cases and just take mean and std (both upper and lower case) : 88 measures (86 meatures , activity         and subject columns)
 		                          
 		#subsetcol <- grepl( "[Mm]ean|[Ss]td|activityid|subjectid" , names( cleandataset ) )
 				
 	**Choice 3 : Only choose the explicit mean() and std() (leaving out the MeanFrequency and GravityMean) 
-				  ##68 feature/measures only. 
-	Note we only get the mean() and std() of measuresments rather than MeanFrequency and GravityMean 
-		         
-	 The assignment was not clear as which mean but looking at data seems Choice 3 is best suited 
+	with this Choice it outputs only 68 feature/measures.  
+	***Note we only get the mean() and std() of measuresments rather than MeanFrequency and GravityMean 
+        The assignment was not clear as which mean but looking at data seems Choice 3 is best suited 
   
   
   *** I CHOSE CHOICE 3  *** 
-  This seems more logical, consistent and more  relevant to our exercise:  68 mean/std columns
+  	This seems more logical, consistent and more  relevant to our exercise:  68 mean/std columns
 
-	subsetcol <- grepl( "[Mm]ean\\()|[Ss]td\\()|activityid|subjectid" , names( cleandataset ) )
+		subsetcol <- grepl( "[Mm]ean\\()|[Ss]td\\()|activityid|subjectid" , names( cleandataset ) )
 
-  	#To get the subset of mean and std use the index from subsetcol output subset to 'cleanmean' dataset
+  		#To get the subset of mean and std use the index from subsetcol output subset to 'cleanmean' dataset
                 
-      cleanmean <- cleandataset[,subsetcol]
+      		cleanmean <- cleandataset[,subsetcol]
                                 
-	#dim(cleanmean) ## 10299 68 columns ie activity, subject and 68 variables 
+		#dim(cleanmean) ## 10299 68 columns ie activity, subject and 68 variables 
 	    
                  
 At this point, the dimension is 10299 rows and 68 feature variables in an output called cleanmean dataset
 
-###NUMBER 3: CHANGING THE ACTIVITYID VALUES TO ACTIVITY NAMES VALUES AND RENAMING COLUMN
+### NUMBER 3: CHANGING THE ACTIVITYID VALUES TO ACTIVITY NAMES VALUES AND RENAMING COLUMN
     
     This step involves replacing activityid values in main dataset with the activity names from activity dataset
     
@@ -170,7 +167,7 @@ At this point, the dimension is 10299 rows and 68 feature variables in an output
 							
 		  #head(activitylist, 5) 
 	      		activityid activityname
-         	     5.0    	 5     STANDING
+         	        5.0    	 5     STANDING
 			5.1      5     STANDING
 			5.2      5     STANDING
 			5.3      5     STANDING
@@ -208,7 +205,8 @@ At this point, the dimension is 10299 rows and 68 feature variables in an output
 
 #### NUMBER 5 :FINDING AVERAGE PER SUBJECT AND ACTIVITY USING THE WIDE DATASET FORMAT
 
-	To find average. this dataset will be left in Wide dataset format
+	To find average can be done in either wide or melted into long format
+	This dataset will be left in Wide dataset format 
           
                 AverageActivitySubject <- group_by(cleanmean,subjectid,Activity ) %>% summarise_each(funs(mean))
                 names(AverageActivitySubject) 
@@ -224,7 +222,7 @@ At this point, the dimension is 10299 rows and 68 feature variables in an output
 #### NUMBER 4: Final Cleanup : This is an extension of NUMBER 4 requirements and optional
 
 	Use the Feature_info.txt to manually add meaning to labels and tidy up formatting 
-	extending the NUMBER 4 requirements - making labels enduser friendly. 
+	extending the NUMBER 4 requirements - making labels enduser friendly, looking at case sensitivity
 
 	Find and replace variables to make more sense of column names , replace acronyms with end user friendly terms
 
@@ -232,7 +230,7 @@ At this point, the dimension is 10299 rows and 68 feature variables in an output
 
 	Use the gsub and pattern matching to find and replace , example the following: 
             
-           - firstly replace mean() with 'mean' and std() with 'Standard deviation'
+           - firstly replace mean() with 'Mean' and std() with 'Standard deviation'
             
             - then replace ""fbody"" with 'frequency of signal for '
             - replace XYZ with ' 3-axial signals' 
