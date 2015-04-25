@@ -148,7 +148,7 @@ setwd('./UCI HAR Dataset')
                 names(AverageActivitySubject)  <- gsub("BodyAccelerometer", "Body Accelerometer",names(AverageActivitySubject))
                 
                 AverageActivitySubject<- rename(AverageActivitySubject, Subject = subjectid)
-
+                
                 #dim(AverageActivitySubject) ##180 x 68
                 ##names(AverageActivitySubject) 
                 #AverageActivitySubject[1:10,1:5]
@@ -156,11 +156,11 @@ setwd('./UCI HAR Dataset')
 
  ##Finally write out to table
       
-                write.table(AverageActivitySubject, "./AverageSubjectActivity.txt", row.name=FALSE, col.names = TRUE)
+                write.table(AverageActivitySubject, "./AverageActivitySubject.txt", row.name=FALSE, col.names = TRUE)
 
 ## To read it back into R please use the following statement
 
-                #fileAverage <-'./AverageSubjectActivity.txt'
+                #fileAverage <-'./AverageActivitySubject.txt'
                 #AverageActivitySubject <- read.table(fileAverage , dec=".", quote="\"", stringsAsFactors=F, header= TRUE)
 
                   #dim(AverageActivitySubject)
