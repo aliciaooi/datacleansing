@@ -158,22 +158,23 @@ At this point, the dimension is 10299 rows and 68 feature variables in an output
 	Step 1. Getting list of Activityid from main dataset - row index is  list of activityid from cleanmean
                rowindex <- cleanmean$activityid 
                 
-	Step 2.Matching the activityid in dataset with the activity datset to get the list of activities by names 
+	Step 2.Matching the activityid in dataset with the activity datset 
 	This is a data mapping exercise so we get an activitylist of data which is mapped:
                 
                 activitylist <- activity[rowindex,]
                 			
-	This intermediate step gives us a data mapping of the activityid to activityname called activitylist which contains 		the activitynames we can use to populate the main dataset. Output of activitylist
-							
+	This intermediate step gives us a data mapping of the activityid to activityname called activitylist 
+	This contains translation of activityid to activitynames we can use to populate the main dataset. 
+	Output of activitylist:
+						
 		  #head(activitylist, 5) 
 	      		activityid activityname
-         	        5.0    	 5     STANDING
+         	        	5.0    	 5     STANDING
 			5.1      5     STANDING
 			5.2      5     STANDING
 			5.3      5     STANDING
 			5.4      5     STANDING
-									
-                           
+              
         Step 3. Finally replacing the activityID with activityname values in the main dataset cleanamean by referring to             the matched list in previous step
         We use out translation dataset called activitylist to replace activityid with activityname
 				
