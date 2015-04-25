@@ -8,7 +8,7 @@ library('reshape2')
 
 library('tidyr')
 
-getwd()
+
 setwd('./UCI HAR Dataset')
 
 ### NUMBER 1 Combining datasets into one consolidated dataset called All
