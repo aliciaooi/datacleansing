@@ -215,7 +215,9 @@ At this point, the dimension is 10299 rows and 68 feature variables in an output
                 dim(AverageActivitySubject) 
 
   
-	It is possible to use the melt into long method which yields exactly the same result then averaging it but opted to 		use wide method
+	It is possible to use the melt into long method which yields exactly the same result then averaging it 
+	but opted to leave as wide dataset method
+	
 	dim(AverageActivitySubject)
      			     [1] 180  68
 	The result is 30 subjects x 6 activities (180) by 68 mean and std columns we chose to subset earlier				 
