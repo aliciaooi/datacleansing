@@ -123,7 +123,8 @@
 				
 	        #subsetcol <- grepl( "activityid"|"subjectid"|"mean"|"std")" , names(cleandataset) ) ## 81 measures
 			  
-	Choice 2: Ignore cases and just take mean and std (both upper and lower case) : 88 measures (86 meatures , activity         and subject columns)
+	Choice 2: Ignore cases and just take mean and std (both upper and lower case) : 88 measures 
+	(86 meatures , activity and subject columns)
 		                          
 		#subsetcol <- grepl( "[Mm]ean|[Ss]td|activityid|subjectid" , names( cleandataset ) )
 				
