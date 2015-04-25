@@ -272,7 +272,7 @@ At this point, the dimension is 10299 rows and 68 feature variables in an output
 
 #### To read it back into R please use the following statement
 
-		fileAverage <-'./AverageActivitySubject.txt'
+		fileAverage <-'./AverageSubjectActivity.txt'
 		AverageActivitySubject <- read.table(fileAverage , dec=".", quote="\"", stringsAsFactors=F, header= TRUE)
 
-				
+	
