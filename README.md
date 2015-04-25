@@ -21,7 +21,7 @@
 
 	1. Importing data 
 			#xtest
-          	filextest<-'./test/X_test.txt'
+         	filextest<-'./test/X_test.txt'
 			xtest <- read.table(filextest, dec=".", quote="\"", stringsAsFactors=F)
 			#ytest     
           
@@ -252,10 +252,10 @@ At this point, the dimension is 10299 rows and 68 feature variables in an output
 	        names(AverageActivitySubject)  <- gsub("X"," for X axial",names(AverageActivitySubject))
 	        names(AverageActivitySubject)  <- gsub("Y"," for Y axial",names(AverageActivitySubject))
 	        names(AverageActivitySubject)  <- gsub("Z"," for Z axial",names(AverageActivitySubject))
-            	names(AverageActivitySubject)  <- gsub("[-]", "",names(AverageActivitySubject))
-            	names(AverageActivitySubject)  <- gsub("[()]", "",names(AverageActivitySubject))
-            	names(AverageActivitySubject)  <- gsub("BodyGyroscope", "Body Gyroscope",names(AverageActivitySubject))
-            	names(AverageActivitySubject)  <- gsub("BodyAccelerometer", "Body Accelerometer",names(AverageActivitySubject                                                     ))
+            names(AverageActivitySubject)  <- gsub("[-]", "",names(AverageActivitySubject))
+            names(AverageActivitySubject)  <- gsub("[()]", "",names(AverageActivitySubject))
+            names(AverageActivitySubject)  <- gsub("BodyGyroscope", "Body Gyroscope",names(AverageActivitySubject))
+            names(AverageActivitySubject)  <- gsub("BodyAccelerometer", "Body Accelerometer",names(AverageActivitySubject                                                     ))
                 
         	AverageActivitySubject<- rename(AverageActivitySubject, Subject = subjectid)
 
