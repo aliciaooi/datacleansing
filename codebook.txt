@@ -1,5 +1,10 @@
+CODEBOOK 
 
 AverageActivitySubject 
+
+This codebook describes the name of each variable, the values the variable takes
+Statistical information of the variables: Distribution of observations among all the values that may be taken by each variable
+Also has mean, sd, and range for the interval and ratio of each variables.
 
  68  Variables      180  Observations
 ------------------------------------------------------------------------------------------------------------------------------------------------
