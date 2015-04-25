@@ -128,13 +128,13 @@
 		#subsetcol <- grepl( "[Mm]ean|[Ss]td|activityid|subjectid" , names( cleandataset ) )
 				
 	**Choice 3 : Only choose the explicit mean() and std() (leaving out the MeanFrequency and GravityMean) 
-	with this Choice it outputs only 68 feature/measures.  
+	with this Choice it outputs only 66 feature/measures.  
 	***Note we only get the mean() and std() of measuresments rather than MeanFrequency and GravityMean 
         The assignment was not clear as which mean but looking at data seems Choice 3 is best suited 
   
   
   *** I CHOSE CHOICE 3  *** 
-  	This seems more logical, consistent and more  relevant to our exercise:  68 mean/std columns
+  	This seems more logical, consistent and more  relevant to our exercise:  66 mean/std columns
 
 		subsetcol <- grepl( "[Mm]ean\\()|[Ss]td\\()|activityid|subjectid" , names( cleandataset ) )
 
@@ -142,7 +142,7 @@
                 
       		cleanmean <- cleandataset[,subsetcol]
                                 
-		#dim(cleanmean) ## 10299 68 columns ie activity, subject and 68 variables 
+		#dim(cleanmean) ## 10299 68 columns ie activity, subject and 66 variables 
 	    
                  
 At this point, the dimension is 10299 rows and 68 feature variables in an output called cleanmean dataset
