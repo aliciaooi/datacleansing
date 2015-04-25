@@ -222,7 +222,8 @@ At this point, the dimension is 10299 rows and 68 feature variables in an output
 
 #### NUMBER 4: Final Cleanup : This is an extension of NUMBER 4 requirements and optional
 
-	Use the Feature_info.txt to manually add meaning to labels and tidy up formatting 
+	Requirements for NUMBER 4 were mostly already completed in earlier steps to produce cleandata dataset. 
+	In addition, use the Feature_info.txt to manually add meaning to labels and tidy up formatting 
 	extending the NUMBER 4 requirements - making labels enduser friendly, looking at case sensitivity
 
 	Find and replace variables to make more sense of column names , replace acronyms with end user friendly terms
