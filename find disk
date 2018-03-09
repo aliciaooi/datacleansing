@@ -1,0 +1,1 @@
+ForEach ($disk in Get-CIMinstance Win32_LogicalDisk) { $drive=$disk.DeviceID ## assign variable to properties  $vol=$disk.VolumeName  $type=[enum]::GetValues([System.IO.DriveType])[$disk.drivetype]  $size=($disk.size / 1Gb)  $free=($disk.FreeSpace / 1Gb)  write-output "$drive '$vol' : $type : $($size.ToString('N2')) ($($free.ToSTring('N2')) ` free)" }
