@@ -13,3 +13,11 @@ foreach ($element in $DataSet)
  #Test
 $database.gettype().Name$db.gettype().Name   ##should be Database datatype$loginName.gettype().Name
 
+PS:\ Import-Module FailoverClusters
+PS:\ Get-Command –Module FailoverClusters or Get-Command | findstr Cluster 
+PS:\ Get-ClusterGroup
+PS:\  Get-ClusterGroup "GROUPNAME" | Get-ClusterResource
+PS:\ Get-ClusterNode –Name “NODENAME” | Get-ClusterGroup
+https://blogs.msdn.microsoft.com/alwaysonpro/2014/06/03/connection-timeouts-in-multi-subnet-availability-group/
+>Get-ClusterResource <AG Listener Resource Name> | Set-ClusterParameter -Name HostRecordTTL -Value 120>Get-ClusterResource <AG Listener Resource Name> | Set-ClusterParameter -Name RegisterAllProvidersIP -Value 0
+SELECT '-- (1) Copy/Paste the results of this query '     + ' into a query window.'     AS [Generated TSQL script:]  UNION  SELECT '-- (2) After all PowerShell scripts/command'     + ' have been executed,'  UNION  SELECT '-- (3) Execute the following TSQL commands'     + ' to restore PORT settings.'  UNION  SELECT 'ALTER AVAILABILITY GROUP '     + ag.name + ' MODIFY LISTENER '''     + agl.dns_name + ''' (PORT = '     + CAST(ISNULL(agl.port,1433) AS VARCHAR(5)) + ');'     + CHAR(13) + CHAR(10)     FROM sys.availability_group_listeners agl          INNER JOIN sys.availability_groups ag         ON agl.group_id = ag.group_id 
