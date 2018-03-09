@@ -8,4 +8,8 @@ $db = New-Object -TypeName Microsoft.SqlServer.Management.Smo.Database -argument
 
 $DataSet = Invoke-Sqlcmd -Database DatabaseName -Query 'select... from [dbo].Table AS A WHERE A.Column = ''Y''' -ServerInstance databaseServer
 foreach ($element in $DataSet)
-{$element$test = $element.ID$test2 = $element.Column.test$test2}
+{$element$test = $element.ID$test2
+
+ #Test
+$database.gettype().Name$db.gettype().Name   ##should be Database datatype$loginName.gettype().Name
+
